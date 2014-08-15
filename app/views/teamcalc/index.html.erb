@@ -4,9 +4,15 @@
 <div class="col-md-4">
 	<%= form_tag("/teamcalc/solution") do%>
 		<form role="form">
+<!--		
 			<div class="form-group">
 				<%= label_tag(:num_students, "Number of Students") %>
 				<%= number_field_tag :num_students, nil, class: "form-control", autofocus: true %>
+			</div>
+-->
+			<div class="form-group">
+				<%= label_tag(:students, "Student Names (one student per line)") %>
+				<%= text_area_tag :students, nil, class: "form-control", autofocus: true, rows: "10" %>
 			</div>
 			<div class="form-group">
 				<%= label_tag(:num_teams, "Number of Teams") %>

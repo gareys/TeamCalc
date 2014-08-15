@@ -1,5 +1,55 @@
 <div class="page-header">
-	<h1>Thanks for giving us some information</h1>
+	<h3>We need to put <%= @num_students %> students into <%= @num_teams %> teams. <small><%= team_calc(@num_students, @num_teams) %></small></h3>
 </div>
-<h3>We need to put <%= @num_students %> students into <%= @num_teams %> teams.</h3>
-<%= team_calc(@num_students, @num_teams) %>
+<!-- <% @list_students.each do |student| %>
+<p><%= student %></p>
+<% end %>
+<br />
+<br />
+-->
+<% n = 0 %>
+<% if @num_students.to_i % @num_teams.to_i == 0 && @num_students.to_i / @num_teams.to_i >= 2 %>
+	<% @num_teams.to_i.times do %>
+		<div class="col-md-2">
+			<table class="table table-hover">
+				<h4>Team <%= n = n + 1 %> <small>(<%= @size_normal %>)</small></h4>
+					<% @list_students.sample(@size_normal).each do |i| %>
+						<% @list_students.delete(i) %>
+							<tr>
+								<td><%= i %></td>
+							</tr>
+					<% end %>
+			</table>
+		</div>
+	<% end %>
+<% elsif @num_students.to_i / @num_teams.to_i < 2 %>
+	<h1>FAILURE</h1>
+<% else %>
+	<% @num_normal.times do %>
+		<div class="col-md-2">	
+			<table class="table table-hover">
+				<h4>Team <%= n = n + 1 %> <small>(<%= @size_normal %>)</small></h4>
+					<% @list_students.sample(@size_normal).each do |i| %>
+						<% @list_students.delete(i) %>
+							<tr>
+								<td><%= i %></td>
+							</tr>
+							<% @list_leftover = @list_students %>
+						<% end %>
+			</table>
+		</div>
+	<% end %>
+	<% @num_oddman.times do %>
+		<div class="col-md-2">	
+			<table class="table table-hover">
+				<h4>Team <%= n = n + 1 %> <small>(<%= @size_oddman %>)</small></h4>
+					<% @list_leftover.sample(@size_oddman).each do |i| %>
+						<% @list_leftover.delete(i) %>
+							<tr>
+								<td><%= i %></td>
+							</tr>
+						<% end %>
+			</table>
+		</div>
+	<% end %>
+<% end %>
