@@ -3,7 +3,6 @@
 </div>
 <div class="col-md-4">
 	<%= form_tag("/teamcalc/solution") do%>
-		<form role="form">
 <!--		
 			<div class="form-group">
 				<%= label_tag(:num_students, "Number of Students") %>
@@ -19,6 +18,5 @@
 				<%= number_field_tag :num_teams, nil, class: "form-control", autofocus: true %>
 			</div>
 			<%= submit_tag "Make me some teams!", class: "btn btn-success" %>
-		</form>
 	<% end %>
 </div>
